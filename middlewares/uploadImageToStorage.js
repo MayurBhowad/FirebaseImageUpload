@@ -1,9 +1,9 @@
 const { Storage } = require('@google-cloud/storage');
-const { format } = require('util');
 
 const storage = new Storage({
     projectId: "reactimgupload-be04a",
     keyFilename: "./config/reactimgupload-be04a-firebase-adminsdk-zmroq-d13bc2fcc3.json"
+    // keyFilename: "./config/adminSDK.js"
 });
 
 const bucket = storage.bucket("reactimgupload-be04a.appspot.com");
@@ -34,7 +34,8 @@ module.exports = uploadImageToStorage = (file) => {
 
         blobStream.on('finish', () => {
             // The public URL can be used to directly access the file via HTTP.
-            const url = format(`https://storage.googleapis.com/${bucket.name}/${fileUpload.name}`);
+            // const url = format(`https://storage.googleapis.com/${bucket.name}/${fileUpload.name}`);
+            const url = `https://firebasestorage.googleapis.com/v0/b/reactimgupload-be04a.appspot.com/o/new%2F${storageFileName}?alt=media&token=2c6cc6a9-2ce4-4b9c-981a-ed9f7c68e9aa`
             resolve(url);
         });
 

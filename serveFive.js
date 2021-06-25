@@ -33,6 +33,7 @@ app.post('/upload', multer.single("file"), (req, res) => {
 
     if (file) {
         uploadImageToStorage(file).then((success) => {
+            console.log(success)
             res.status(200).send({
                 status: 'success'
             });
